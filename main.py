@@ -3,7 +3,11 @@ help - напечатать справку по программе.
 add - добавить задачу в список (название задачи запрашиваем у пользователя).
 show - напечатать все добавленные задачи."""
 
-tasks = []
+tasks = {
+  'today': [],
+  'tomorrow': [],
+  'later': []
+}
 
 run = True
 
@@ -15,8 +19,15 @@ while run:
     print(tasks)
   elif command == "add":
     task = input("Введите название задачи: ")
-    tasks.append(task)
-    print("Задача добавлена")
+    date = input("Введите дату задачи: ")
+    if date == "Сегодня":
+      index = "today"
+    elif date == "Завтра":
+      index = "tomorrow"
+    else:
+      index = "later"
+    tasks[index].append(task)
+    print("Задача добавлена на", index)
   elif command == "exit":
     break
   else: 
